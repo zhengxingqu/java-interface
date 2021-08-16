@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.Dao.SlaveRelayLogInfoMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.Model.SlaveRelayLogInfo">
+    <result column="Number_of_lines" jdbcType="INTEGER" property="numberOfLines" />
+    <result column="Relay_log_pos" jdbcType="BIGINT" property="relayLogPos" />
+    <result column="Master_log_pos" jdbcType="BIGINT" property="masterLogPos" />
+    <result column="Sql_delay" jdbcType="INTEGER" property="sqlDelay" />
+    <result column="Number_of_workers" jdbcType="INTEGER" property="numberOfWorkers" />
+    <result column="Id" jdbcType="INTEGER" property="id" />
+    <result column="Channel_name" jdbcType="CHAR" property="channelName" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.example.demo.Model.SlaveRelayLogInfoWithBLOBs">
+    <result column="Relay_log_name" jdbcType="LONGVARCHAR" property="relayLogName" />
+    <result column="Master_log_name" jdbcType="LONGVARCHAR" property="masterLogName" />
+  </resultMap>
+  <sql id="Blob_Column_List">
+    Relay_log_name, Master_log_name
+  </sql>
+  <insert id="insert" parameterType="com.example.demo.Model.SlaveRelayLogInfoWithBLOBs">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into slave_relay_log_info (Number_of_lines, Relay_log_pos, Master_log_pos, 
+      Sql_delay, Number_of_workers, Channel_name, 
+      Relay_log_name, Master_log_name)
+    values (#{numberOfLines,jdbcType=INTEGER}, #{relayLogPos,jdbcType=BIGINT}, #{masterLogPos,jdbcType=BIGINT}, 
+      #{sqlDelay,jdbcType=INTEGER}, #{numberOfWorkers,jdbcType=INTEGER}, #{channelName,jdbcType=CHAR}, 
+      #{relayLogName,jdbcType=LONGVARCHAR}, #{masterLogName,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.Model.SlaveRelayLogInfoWithBLOBs">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into slave_relay_log_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="numberOfLines != null">
+        Number_of_lines,
+      </if>
+      <if test="relayLogPos != null">
+        Relay_log_pos,
+      </if>
+      <if test="masterLogPos != null">
+        Master_log_pos,
+      </if>
+      <if test="sqlDelay != null">
+        Sql_delay,
+      </if>
+      <if test="numberOfWorkers != null">
+        Number_of_workers,
+      </if>
+      <if test="channelName != null">
+        Channel_name,
+      </if>
+      <if test="relayLogName != null">
+        Relay_log_name,
+      </if>
+      <if test="masterLogName != null">
+        Master_log_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="numberOfLines != null">
+        #{numberOfLines,jdbcType=INTEGER},
+      </if>
+      <if test="relayLogPos != null">
+        #{relayLogPos,jdbcType=BIGINT},
+      </if>
+      <if test="masterLogPos != null">
+        #{masterLogPos,jdbcType=BIGINT},
+      </if>
+      <if test="sqlDelay != null">
+        #{sqlDelay,jdbcType=INTEGER},
+      </if>
+      <if test="numberOfWorkers != null">
+        #{numberOfWorkers,jdbcType=INTEGER},
+      </if>
+      <if test="channelName != null">
+        #{channelName,jdbcType=CHAR},
+      </if>
+      <if test="relayLogName != null">
+        #{relayLogName,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="masterLogName != null">
+        #{masterLogName,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

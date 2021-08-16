@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.Dao.DjangoContentTypeMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.Model.DjangoContentType">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="app_label" jdbcType="VARCHAR" property="appLabel" />
+    <result column="model" jdbcType="VARCHAR" property="model" />
+  </resultMap>
+  <insert id="insert" parameterType="com.example.demo.Model.DjangoContentType">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into django_content_type (app_label, model)
+    values (#{appLabel,jdbcType=VARCHAR}, #{model,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.Model.DjangoContentType">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into django_content_type
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="appLabel != null">
+        app_label,
+      </if>
+      <if test="model != null">
+        model,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="appLabel != null">
+        #{appLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="model != null">
+        #{model,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <resultMap id="BaseResultMap" type="com.example.demo.Model.DjangoContentType">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="app_label" jdbcType="VARCHAR" property="appLabel" />
+    <result column="model" jdbcType="VARCHAR" property="model" />
+  </resultMap>
+  <insert id="insert" parameterType="com.example.demo.Model.DjangoContentType">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into django_content_type (app_label, model)
+    values (#{appLabel,jdbcType=VARCHAR}, #{model,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.Model.DjangoContentType">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into django_content_type
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="appLabel != null">
+        app_label,
+      </if>
+      <if test="model != null">
+        model,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="appLabel != null">
+        #{appLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="model != null">
+        #{model,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

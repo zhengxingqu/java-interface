@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.Dao.HelpTopicMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.Model.HelpTopic">
+    <result column="help_topic_id" jdbcType="INTEGER" property="helpTopicId" />
+    <result column="name" jdbcType="CHAR" property="name" />
+    <result column="help_category_id" jdbcType="SMALLINT" property="helpCategoryId" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.example.demo.Model.HelpTopicWithBLOBs">
+    <result column="description" jdbcType="LONGVARCHAR" property="description" />
+    <result column="example" jdbcType="LONGVARCHAR" property="example" />
+    <result column="url" jdbcType="LONGVARCHAR" property="url" />
+  </resultMap>
+  <sql id="Blob_Column_List">
+    description, example, url
+  </sql>
+  <insert id="insert" parameterType="com.example.demo.Model.HelpTopicWithBLOBs">
+    insert into help_topic (help_topic_id, name, help_category_id, 
+      description, example, url
+      )
+    values (#{helpTopicId,jdbcType=INTEGER}, #{name,jdbcType=CHAR}, #{helpCategoryId,jdbcType=SMALLINT}, 
+      #{description,jdbcType=LONGVARCHAR}, #{example,jdbcType=LONGVARCHAR}, #{url,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.Model.HelpTopicWithBLOBs">
+    insert into help_topic
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="helpTopicId != null">
+        help_topic_id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="helpCategoryId != null">
+        help_category_id,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="example != null">
+        example,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="helpTopicId != null">
+        #{helpTopicId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=CHAR},
+      </if>
+      <if test="helpCategoryId != null">
+        #{helpCategoryId,jdbcType=SMALLINT},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="example != null">
+        #{example,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

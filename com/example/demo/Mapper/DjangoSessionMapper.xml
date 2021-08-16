@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.Dao.DjangoSessionMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.Model.DjangoSession">
+    <result column="session_key" jdbcType="VARCHAR" property="sessionKey" />
+    <result column="expire_date" jdbcType="TIMESTAMP" property="expireDate" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.example.demo.Model.DjangoSession">
+    <result column="session_data" jdbcType="LONGVARCHAR" property="sessionData" />
+  </resultMap>
+  <sql id="Blob_Column_List">
+    session_data
+  </sql>
+  <insert id="insert" parameterType="com.example.demo.Model.DjangoSession">
+    insert into django_session (session_key, expire_date, session_data
+      )
+    values (#{sessionKey,jdbcType=VARCHAR}, #{expireDate,jdbcType=TIMESTAMP}, #{sessionData,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.Model.DjangoSession">
+    insert into django_session
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sessionKey != null">
+        session_key,
+      </if>
+      <if test="expireDate != null">
+        expire_date,
+      </if>
+      <if test="sessionData != null">
+        session_data,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sessionKey != null">
+        #{sessionKey,jdbcType=VARCHAR},
+      </if>
+      <if test="expireDate != null">
+        #{expireDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sessionData != null">
+        #{sessionData,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <resultMap id="BaseResultMap" type="com.example.demo.Model.DjangoSession">
+    <result column="session_key" jdbcType="VARCHAR" property="sessionKey" />
+    <result column="expire_date" jdbcType="TIMESTAMP" property="expireDate" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.example.demo.Model.DjangoSession">
+    <result column="session_data" jdbcType="LONGVARCHAR" property="sessionData" />
+  </resultMap>
+  <sql id="Blob_Column_List">
+    session_data
+  </sql>
+  <insert id="insert" parameterType="com.example.demo.Model.DjangoSession">
+    insert into django_session (session_key, expire_date, session_data
+      )
+    values (#{sessionKey,jdbcType=VARCHAR}, #{expireDate,jdbcType=TIMESTAMP}, #{sessionData,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.Model.DjangoSession">
+    insert into django_session
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sessionKey != null">
+        session_key,
+      </if>
+      <if test="expireDate != null">
+        expire_date,
+      </if>
+      <if test="sessionData != null">
+        session_data,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sessionKey != null">
+        #{sessionKey,jdbcType=VARCHAR},
+      </if>
+      <if test="expireDate != null">
+        #{expireDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sessionData != null">
+        #{sessionData,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

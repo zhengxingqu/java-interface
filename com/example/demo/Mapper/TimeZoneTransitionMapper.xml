@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.Dao.TimeZoneTransitionMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.Model.TimeZoneTransition">
+    <result column="Time_zone_id" jdbcType="INTEGER" property="timeZoneId" />
+    <result column="Transition_time" jdbcType="BIGINT" property="transitionTime" />
+    <result column="Transition_type_id" jdbcType="INTEGER" property="transitionTypeId" />
+  </resultMap>
+  <insert id="insert" parameterType="com.example.demo.Model.TimeZoneTransition">
+    insert into time_zone_transition (Time_zone_id, Transition_time, Transition_type_id
+      )
+    values (#{timeZoneId,jdbcType=INTEGER}, #{transitionTime,jdbcType=BIGINT}, #{transitionTypeId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.Model.TimeZoneTransition">
+    insert into time_zone_transition
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="timeZoneId != null">
+        Time_zone_id,
+      </if>
+      <if test="transitionTime != null">
+        Transition_time,
+      </if>
+      <if test="transitionTypeId != null">
+        Transition_type_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="timeZoneId != null">
+        #{timeZoneId,jdbcType=INTEGER},
+      </if>
+      <if test="transitionTime != null">
+        #{transitionTime,jdbcType=BIGINT},
+      </if>
+      <if test="transitionTypeId != null">
+        #{transitionTypeId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

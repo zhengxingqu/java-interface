@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.Dao.NdbBinlogIndexMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.Model.NdbBinlogIndex">
+    <result column="Position" jdbcType="BIGINT" property="position" />
+    <result column="File" jdbcType="VARCHAR" property="file" />
+    <result column="epoch" jdbcType="BIGINT" property="epoch" />
+    <result column="inserts" jdbcType="INTEGER" property="inserts" />
+    <result column="updates" jdbcType="INTEGER" property="updates" />
+    <result column="deletes" jdbcType="INTEGER" property="deletes" />
+    <result column="schemaops" jdbcType="INTEGER" property="schemaops" />
+    <result column="orig_server_id" jdbcType="INTEGER" property="origServerId" />
+    <result column="orig_epoch" jdbcType="BIGINT" property="origEpoch" />
+    <result column="gci" jdbcType="INTEGER" property="gci" />
+    <result column="next_position" jdbcType="BIGINT" property="nextPosition" />
+    <result column="next_file" jdbcType="VARCHAR" property="nextFile" />
+  </resultMap>
+  <insert id="insert" parameterType="com.example.demo.Model.NdbBinlogIndex">
+    insert into ndb_binlog_index (Position, File, epoch, 
+      inserts, updates, deletes, 
+      schemaops, orig_server_id, orig_epoch, 
+      gci, next_position, next_file
+      )
+    values (#{position,jdbcType=BIGINT}, #{file,jdbcType=VARCHAR}, #{epoch,jdbcType=BIGINT}, 
+      #{inserts,jdbcType=INTEGER}, #{updates,jdbcType=INTEGER}, #{deletes,jdbcType=INTEGER}, 
+      #{schemaops,jdbcType=INTEGER}, #{origServerId,jdbcType=INTEGER}, #{origEpoch,jdbcType=BIGINT}, 
+      #{gci,jdbcType=INTEGER}, #{nextPosition,jdbcType=BIGINT}, #{nextFile,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.Model.NdbBinlogIndex">
+    insert into ndb_binlog_index
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="position != null">
+        Position,
+      </if>
+      <if test="file != null">
+        File,
+      </if>
+      <if test="epoch != null">
+        epoch,
+      </if>
+      <if test="inserts != null">
+        inserts,
+      </if>
+      <if test="updates != null">
+        updates,
+      </if>
+      <if test="deletes != null">
+        deletes,
+      </if>
+      <if test="schemaops != null">
+        schemaops,
+      </if>
+      <if test="origServerId != null">
+        orig_server_id,
+      </if>
+      <if test="origEpoch != null">
+        orig_epoch,
+      </if>
+      <if test="gci != null">
+        gci,
+      </if>
+      <if test="nextPosition != null">
+        next_position,
+      </if>
+      <if test="nextFile != null">
+        next_file,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="position != null">
+        #{position,jdbcType=BIGINT},
+      </if>
+      <if test="file != null">
+        #{file,jdbcType=VARCHAR},
+      </if>
+      <if test="epoch != null">
+        #{epoch,jdbcType=BIGINT},
+      </if>
+      <if test="inserts != null">
+        #{inserts,jdbcType=INTEGER},
+      </if>
+      <if test="updates != null">
+        #{updates,jdbcType=INTEGER},
+      </if>
+      <if test="deletes != null">
+        #{deletes,jdbcType=INTEGER},
+      </if>
+      <if test="schemaops != null">
+        #{schemaops,jdbcType=INTEGER},
+      </if>
+      <if test="origServerId != null">
+        #{origServerId,jdbcType=INTEGER},
+      </if>
+      <if test="origEpoch != null">
+        #{origEpoch,jdbcType=BIGINT},
+      </if>
+      <if test="gci != null">
+        #{gci,jdbcType=INTEGER},
+      </if>
+      <if test="nextPosition != null">
+        #{nextPosition,jdbcType=BIGINT},
+      </if>
+      <if test="nextFile != null">
+        #{nextFile,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

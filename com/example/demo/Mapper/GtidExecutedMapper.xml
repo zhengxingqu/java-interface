@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.Dao.GtidExecutedMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.Model.GtidExecuted">
+    <result column="source_uuid" jdbcType="CHAR" property="sourceUuid" />
+    <result column="interval_start" jdbcType="BIGINT" property="intervalStart" />
+    <result column="interval_end" jdbcType="BIGINT" property="intervalEnd" />
+  </resultMap>
+  <insert id="insert" parameterType="com.example.demo.Model.GtidExecuted">
+    insert into gtid_executed (source_uuid, interval_start, interval_end
+      )
+    values (#{sourceUuid,jdbcType=CHAR}, #{intervalStart,jdbcType=BIGINT}, #{intervalEnd,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.Model.GtidExecuted">
+    insert into gtid_executed
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sourceUuid != null">
+        source_uuid,
+      </if>
+      <if test="intervalStart != null">
+        interval_start,
+      </if>
+      <if test="intervalEnd != null">
+        interval_end,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sourceUuid != null">
+        #{sourceUuid,jdbcType=CHAR},
+      </if>
+      <if test="intervalStart != null">
+        #{intervalStart,jdbcType=BIGINT},
+      </if>
+      <if test="intervalEnd != null">
+        #{intervalEnd,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

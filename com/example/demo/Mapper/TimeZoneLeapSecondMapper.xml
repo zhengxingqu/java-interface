@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.Dao.TimeZoneLeapSecondMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.Model.TimeZoneLeapSecond">
+    <result column="Transition_time" jdbcType="BIGINT" property="transitionTime" />
+    <result column="Correction" jdbcType="INTEGER" property="correction" />
+  </resultMap>
+  <insert id="insert" parameterType="com.example.demo.Model.TimeZoneLeapSecond">
+    insert into time_zone_leap_second (Transition_time, Correction)
+    values (#{transitionTime,jdbcType=BIGINT}, #{correction,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.Model.TimeZoneLeapSecond">
+    insert into time_zone_leap_second
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="transitionTime != null">
+        Transition_time,
+      </if>
+      <if test="correction != null">
+        Correction,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="transitionTime != null">
+        #{transitionTime,jdbcType=BIGINT},
+      </if>
+      <if test="correction != null">
+        #{correction,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

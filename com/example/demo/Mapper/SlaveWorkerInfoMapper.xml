@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.Dao.SlaveWorkerInfoMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.Model.SlaveWorkerInfo">
+    <result column="Id" jdbcType="INTEGER" property="id" />
+    <result column="Relay_log_pos" jdbcType="BIGINT" property="relayLogPos" />
+    <result column="Master_log_pos" jdbcType="BIGINT" property="masterLogPos" />
+    <result column="Checkpoint_relay_log_pos" jdbcType="BIGINT" property="checkpointRelayLogPos" />
+    <result column="Checkpoint_master_log_pos" jdbcType="BIGINT" property="checkpointMasterLogPos" />
+    <result column="Checkpoint_seqno" jdbcType="INTEGER" property="checkpointSeqno" />
+    <result column="Checkpoint_group_size" jdbcType="INTEGER" property="checkpointGroupSize" />
+    <result column="Channel_name" jdbcType="CHAR" property="channelName" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.example.demo.Model.SlaveWorkerInfoWithBLOBs">
+    <result column="Relay_log_name" jdbcType="LONGVARCHAR" property="relayLogName" />
+    <result column="Master_log_name" jdbcType="LONGVARCHAR" property="masterLogName" />
+    <result column="Checkpoint_relay_log_name" jdbcType="LONGVARCHAR" property="checkpointRelayLogName" />
+    <result column="Checkpoint_master_log_name" jdbcType="LONGVARCHAR" property="checkpointMasterLogName" />
+    <result column="Checkpoint_group_bitmap" jdbcType="LONGVARBINARY" property="checkpointGroupBitmap" />
+  </resultMap>
+  <sql id="Blob_Column_List">
+    Relay_log_name, Master_log_name, Checkpoint_relay_log_name, Checkpoint_master_log_name, 
+    Checkpoint_group_bitmap
+  </sql>
+  <insert id="insert" parameterType="com.example.demo.Model.SlaveWorkerInfoWithBLOBs">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into slave_worker_info (Relay_log_pos, Master_log_pos, Checkpoint_relay_log_pos, 
+      Checkpoint_master_log_pos, Checkpoint_seqno, 
+      Checkpoint_group_size, Channel_name, Relay_log_name, 
+      Master_log_name, Checkpoint_relay_log_name, 
+      Checkpoint_master_log_name, Checkpoint_group_bitmap
+      )
+    values (#{relayLogPos,jdbcType=BIGINT}, #{masterLogPos,jdbcType=BIGINT}, #{checkpointRelayLogPos,jdbcType=BIGINT}, 
+      #{checkpointMasterLogPos,jdbcType=BIGINT}, #{checkpointSeqno,jdbcType=INTEGER}, 
+      #{checkpointGroupSize,jdbcType=INTEGER}, #{channelName,jdbcType=CHAR}, #{relayLogName,jdbcType=LONGVARCHAR}, 
+      #{masterLogName,jdbcType=LONGVARCHAR}, #{checkpointRelayLogName,jdbcType=LONGVARCHAR}, 
+      #{checkpointMasterLogName,jdbcType=LONGVARCHAR}, #{checkpointGroupBitmap,jdbcType=LONGVARBINARY}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.Model.SlaveWorkerInfoWithBLOBs">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into slave_worker_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="relayLogPos != null">
+        Relay_log_pos,
+      </if>
+      <if test="masterLogPos != null">
+        Master_log_pos,
+      </if>
+      <if test="checkpointRelayLogPos != null">
+        Checkpoint_relay_log_pos,
+      </if>
+      <if test="checkpointMasterLogPos != null">
+        Checkpoint_master_log_pos,
+      </if>
+      <if test="checkpointSeqno != null">
+        Checkpoint_seqno,
+      </if>
+      <if test="checkpointGroupSize != null">
+        Checkpoint_group_size,
+      </if>
+      <if test="channelName != null">
+        Channel_name,
+      </if>
+      <if test="relayLogName != null">
+        Relay_log_name,
+      </if>
+      <if test="masterLogName != null">
+        Master_log_name,
+      </if>
+      <if test="checkpointRelayLogName != null">
+        Checkpoint_relay_log_name,
+      </if>
+      <if test="checkpointMasterLogName != null">
+        Checkpoint_master_log_name,
+      </if>
+      <if test="checkpointGroupBitmap != null">
+        Checkpoint_group_bitmap,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="relayLogPos != null">
+        #{relayLogPos,jdbcType=BIGINT},
+      </if>
+      <if test="masterLogPos != null">
+        #{masterLogPos,jdbcType=BIGINT},
+      </if>
+      <if test="checkpointRelayLogPos != null">
+        #{checkpointRelayLogPos,jdbcType=BIGINT},
+      </if>
+      <if test="checkpointMasterLogPos != null">
+        #{checkpointMasterLogPos,jdbcType=BIGINT},
+      </if>
+      <if test="checkpointSeqno != null">
+        #{checkpointSeqno,jdbcType=INTEGER},
+      </if>
+      <if test="checkpointGroupSize != null">
+        #{checkpointGroupSize,jdbcType=INTEGER},
+      </if>
+      <if test="channelName != null">
+        #{channelName,jdbcType=CHAR},
+      </if>
+      <if test="relayLogName != null">
+        #{relayLogName,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="masterLogName != null">
+        #{masterLogName,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="checkpointRelayLogName != null">
+        #{checkpointRelayLogName,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="checkpointMasterLogName != null">
+        #{checkpointMasterLogName,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="checkpointGroupBitmap != null">
+        #{checkpointGroupBitmap,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

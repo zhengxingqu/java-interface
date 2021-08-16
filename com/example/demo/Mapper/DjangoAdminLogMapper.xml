@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.Dao.DjangoAdminLogMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.Model.DjangoAdminLog">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="action_time" jdbcType="TIMESTAMP" property="actionTime" />
+    <result column="object_repr" jdbcType="VARCHAR" property="objectRepr" />
+    <result column="action_flag" jdbcType="SMALLINT" property="actionFlag" />
+    <result column="content_type_id" jdbcType="INTEGER" property="contentTypeId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.example.demo.Model.DjangoAdminLogWithBLOBs">
+    <result column="object_id" jdbcType="LONGVARCHAR" property="objectId" />
+    <result column="change_message" jdbcType="LONGVARCHAR" property="changeMessage" />
+  </resultMap>
+  <sql id="Blob_Column_List">
+    object_id, change_message
+  </sql>
+  <insert id="insert" parameterType="com.example.demo.Model.DjangoAdminLogWithBLOBs">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into django_admin_log (action_time, object_repr, action_flag, 
+      content_type_id, user_id, object_id, 
+      change_message)
+    values (#{actionTime,jdbcType=TIMESTAMP}, #{objectRepr,jdbcType=VARCHAR}, #{actionFlag,jdbcType=SMALLINT}, 
+      #{contentTypeId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{objectId,jdbcType=LONGVARCHAR}, 
+      #{changeMessage,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.Model.DjangoAdminLogWithBLOBs">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into django_admin_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="actionTime != null">
+        action_time,
+      </if>
+      <if test="objectRepr != null">
+        object_repr,
+      </if>
+      <if test="actionFlag != null">
+        action_flag,
+      </if>
+      <if test="contentTypeId != null">
+        content_type_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="objectId != null">
+        object_id,
+      </if>
+      <if test="changeMessage != null">
+        change_message,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="actionTime != null">
+        #{actionTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="objectRepr != null">
+        #{objectRepr,jdbcType=VARCHAR},
+      </if>
+      <if test="actionFlag != null">
+        #{actionFlag,jdbcType=SMALLINT},
+      </if>
+      <if test="contentTypeId != null">
+        #{contentTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="objectId != null">
+        #{objectId,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="changeMessage != null">
+        #{changeMessage,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <resultMap id="BaseResultMap" type="com.example.demo.Model.DjangoAdminLog">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="action_time" jdbcType="TIMESTAMP" property="actionTime" />
+    <result column="object_repr" jdbcType="VARCHAR" property="objectRepr" />
+    <result column="action_flag" jdbcType="SMALLINT" property="actionFlag" />
+    <result column="content_type_id" jdbcType="INTEGER" property="contentTypeId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.example.demo.Model.DjangoAdminLogWithBLOBs">
+    <result column="object_id" jdbcType="LONGVARCHAR" property="objectId" />
+    <result column="change_message" jdbcType="LONGVARCHAR" property="changeMessage" />
+  </resultMap>
+  <sql id="Blob_Column_List">
+    object_id, change_message
+  </sql>
+  <insert id="insert" parameterType="com.example.demo.Model.DjangoAdminLogWithBLOBs">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into django_admin_log (action_time, object_repr, action_flag, 
+      content_type_id, user_id, object_id, 
+      change_message)
+    values (#{actionTime,jdbcType=TIMESTAMP}, #{objectRepr,jdbcType=VARCHAR}, #{actionFlag,jdbcType=SMALLINT}, 
+      #{contentTypeId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{objectId,jdbcType=LONGVARCHAR}, 
+      #{changeMessage,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.Model.DjangoAdminLogWithBLOBs">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into django_admin_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="actionTime != null">
+        action_time,
+      </if>
+      <if test="objectRepr != null">
+        object_repr,
+      </if>
+      <if test="actionFlag != null">
+        action_flag,
+      </if>
+      <if test="contentTypeId != null">
+        content_type_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="objectId != null">
+        object_id,
+      </if>
+      <if test="changeMessage != null">
+        change_message,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="actionTime != null">
+        #{actionTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="objectRepr != null">
+        #{objectRepr,jdbcType=VARCHAR},
+      </if>
+      <if test="actionFlag != null">
+        #{actionFlag,jdbcType=SMALLINT},
+      </if>
+      <if test="contentTypeId != null">
+        #{contentTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="objectId != null">
+        #{objectId,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="changeMessage != null">
+        #{changeMessage,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

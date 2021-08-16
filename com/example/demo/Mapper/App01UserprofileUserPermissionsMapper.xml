@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.Dao.App01UserprofileUserPermissionsMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.Model.App01UserprofileUserPermissions">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="userprofile_id" jdbcType="INTEGER" property="userprofileId" />
+    <result column="permission_id" jdbcType="INTEGER" property="permissionId" />
+  </resultMap>
+  <insert id="insert" parameterType="com.example.demo.Model.App01UserprofileUserPermissions">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into app01_userprofile_user_permissions (userprofile_id, permission_id)
+    values (#{userprofileId,jdbcType=INTEGER}, #{permissionId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.Model.App01UserprofileUserPermissions">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into app01_userprofile_user_permissions
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userprofileId != null">
+        userprofile_id,
+      </if>
+      <if test="permissionId != null">
+        permission_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userprofileId != null">
+        #{userprofileId,jdbcType=INTEGER},
+      </if>
+      <if test="permissionId != null">
+        #{permissionId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <resultMap id="BaseResultMap" type="com.example.demo.Model.App01UserprofileUserPermissions">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="userprofile_id" jdbcType="INTEGER" property="userprofileId" />
+    <result column="permission_id" jdbcType="INTEGER" property="permissionId" />
+  </resultMap>
+  <insert id="insert" parameterType="com.example.demo.Model.App01UserprofileUserPermissions">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into app01_userprofile_user_permissions (userprofile_id, permission_id)
+    values (#{userprofileId,jdbcType=INTEGER}, #{permissionId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.Model.App01UserprofileUserPermissions">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into app01_userprofile_user_permissions
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userprofileId != null">
+        userprofile_id,
+      </if>
+      <if test="permissionId != null">
+        permission_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userprofileId != null">
+        #{userprofileId,jdbcType=INTEGER},
+      </if>
+      <if test="permissionId != null">
+        #{permissionId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

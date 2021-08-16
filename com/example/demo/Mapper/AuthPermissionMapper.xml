@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.Dao.AuthPermissionMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.Model.AuthPermission">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="content_type_id" jdbcType="INTEGER" property="contentTypeId" />
+    <result column="codename" jdbcType="VARCHAR" property="codename" />
+  </resultMap>
+  <insert id="insert" parameterType="com.example.demo.Model.AuthPermission">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into auth_permission (name, content_type_id, codename
+      )
+    values (#{name,jdbcType=VARCHAR}, #{contentTypeId,jdbcType=INTEGER}, #{codename,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.Model.AuthPermission">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into auth_permission
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        name,
+      </if>
+      <if test="contentTypeId != null">
+        content_type_id,
+      </if>
+      <if test="codename != null">
+        codename,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="contentTypeId != null">
+        #{contentTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="codename != null">
+        #{codename,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <resultMap id="BaseResultMap" type="com.example.demo.Model.AuthPermission">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="content_type_id" jdbcType="INTEGER" property="contentTypeId" />
+    <result column="codename" jdbcType="VARCHAR" property="codename" />
+  </resultMap>
+  <insert id="insert" parameterType="com.example.demo.Model.AuthPermission">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into auth_permission (name, content_type_id, codename
+      )
+    values (#{name,jdbcType=VARCHAR}, #{contentTypeId,jdbcType=INTEGER}, #{codename,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.Model.AuthPermission">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into auth_permission
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        name,
+      </if>
+      <if test="contentTypeId != null">
+        content_type_id,
+      </if>
+      <if test="codename != null">
+        codename,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="contentTypeId != null">
+        #{contentTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="codename != null">
+        #{codename,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

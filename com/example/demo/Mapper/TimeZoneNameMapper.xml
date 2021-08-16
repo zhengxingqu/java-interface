@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.Dao.TimeZoneNameMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.Model.TimeZoneName">
+    <result column="Name" jdbcType="CHAR" property="name" />
+    <result column="Time_zone_id" jdbcType="INTEGER" property="timeZoneId" />
+  </resultMap>
+  <insert id="insert" parameterType="com.example.demo.Model.TimeZoneName">
+    insert into time_zone_name (Name, Time_zone_id)
+    values (#{name,jdbcType=CHAR}, #{timeZoneId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.Model.TimeZoneName">
+    insert into time_zone_name
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        Name,
+      </if>
+      <if test="timeZoneId != null">
+        Time_zone_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name,jdbcType=CHAR},
+      </if>
+      <if test="timeZoneId != null">
+        #{timeZoneId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>
